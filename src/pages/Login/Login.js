@@ -6,7 +6,7 @@ import Button from "../../components/Button/Button";
 import Form from "../../components/Form/Form";
 import FormInput from "../../components/FormInput/FormInput";
 // import Spinner from "../components/Spinner/Spinner";
-// import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import styles from "../../styles/Login.module.css";
 // import { dynamicTitle } from "../utilities/dynamicTitle";
 
@@ -15,64 +15,58 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-//   const { userLogin, googleSignin } = useAuth();
+  const { userLogin, googleSignin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
   // login user
-//   const handleUserLogin = (e) => {
-//     e.preventDefault();
-//     setLoading(true);
-//     userLogin(email, password)
-//       .then((userInfo) => {
-//         const user = userInfo.user;
-//         //get jwt token
-//         fetch("https://daily-food-server.vercel.app/api/jwt", {
-//           method: "POST",
-//           headers: {
-//             "content-type": "application/json",
-//           },
-//           body: JSON.stringify({
-//             email: user.email,
-//           }),
-//         })
-//           .then((res) => res.json())
-//           .then((data) => {
-//             console.log(data);
-//             localStorage.setItem("token", data.token);
-//             navigate(from, { replace: true });
-//             toast.success("Login successful");
-//             setLoading(false);
-//           });
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//         setError(error.message);
-//         setLoading(false);
-//       });
-//   };
+  const handleUserLogin = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    userLogin(email, password)
+      .then((userInfo) => {
+        const user = userInfo.user;
+        //get jwt token
+        fetch("https://daily-food-server.vercel.app/api/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            email: user.email,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("token", data.token);
+            navigate(from, { replace: true });
+            toast.success("Login successful");
+            setLoading(false);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+        setError(error.message);
+        setLoading(false);
+      });
+  };
 
-// //   if (loading) {
-// //     return <Spinner />;
-// //   }
-//   // google signup function
-//   const handleGoogleSignIn = () => {
-//     googleSignin()
-//       .then((result) => {
-//         const user = result.user;
-//         console.log(user);
-//         toast.success("Google SignUp successful");
-//         navigate("/");
-//       })
-//       .catch((error) => {
-//         const errorMessage = error.message;
-//         toast.error(errorMessage);
-//       });
-//   };
-
-  // add title
-//   dynamicTitle("Login page");
+  //   // google signup function
+  const handleGoogleSignIn = () => {
+    googleSignin()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success("Google SignUp successful");
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        toast.error(errorMessage);
+      });
+  };
 
   return (
     <section className="mt-4 mt-md-5 ">
@@ -84,7 +78,7 @@ const Login = () => {
           <div className="row">
             <div className="col-md-4 offset-md-4">
               <div className="card p-3 mb-4 shadow">
-                <Form >
+                <Form onSubmit={handleUserLogin}>
                   <FormInput
                     label="User Email"
                     type="email"
@@ -114,8 +108,8 @@ const Login = () => {
                 <span className="py-2 text-center">OR</span>
                 <div className="shadow py-3 text-center rounded">
                   <span
-                    
                     className={styles.loginIcons}
+                    onClick={handleGoogleSignIn}
                   >
                     Login With Google
                   </span>

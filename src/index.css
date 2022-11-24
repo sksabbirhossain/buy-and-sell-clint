@@ -9,6 +9,7 @@
 :root {
   --primary-color: #112a46;
   --background: #d8f3dc;
+  --secondary-color: #dce1de;
 }
 a,
 a:hover {
@@ -31,8 +32,7 @@ button:focus,
 .btn:focus {
   outline: none !important;
   box-shadow: none !important;
-  
 }
-section{
+section {
   margin-top: 50px;
 }

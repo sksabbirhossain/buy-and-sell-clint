@@ -1,0 +1,7 @@
+.contact{
+    background-color:  #fdfdfd;
+}
+.contactFrom{
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+}

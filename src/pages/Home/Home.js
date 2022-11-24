@@ -1,4 +1,5 @@
 import React from "react";
+import Contact from "../../components/Contact/Contact";
 import Slider from "../../components/Slider/Slider";
 import AdvertisedItems from "./AdvertisedItems";
 import Categories from "./Categories";
@@ -9,6 +10,7 @@ const Home = () => {
       <Slider />
       <AdvertisedItems />
       <Categories />
+      <Contact />
     </>
   );
 };

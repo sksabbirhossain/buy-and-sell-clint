@@ -3,7 +3,7 @@
 .sliderItems {
   width: 100%;
   min-height: 450px;
-  background-color: #5ba8ad;
+  background-color: var(--secondary-color);
 }
 @media (max-width: 576px) {
   .sliderItems {

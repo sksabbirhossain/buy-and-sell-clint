@@ -7,12 +7,12 @@ const Admin = () => {
   return (
     <div>
       <Header />
-      <div className="container-fluid">
+      <div className="container-fluid mt-3">
         <div className="row">
-          <div className="col-sm-3">
+          <div className="col-sm-2">
             <Sidebar />
           </div>
-          <div className="col-sm-9">
+          <div className="col-sm-10">
             <Outlet />
           </div>
         </div>

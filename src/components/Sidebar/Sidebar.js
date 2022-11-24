@@ -7,7 +7,9 @@ const Sidebar = () => {
     <div className={styles.sidebar}>
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item">
-          <Link class="nav-link ">Add Products</Link>
+          <Link class="nav-link" to="/dashboard/add-product">
+            Add Products
+          </Link>
         </li>
         <li class="nav-item">
           <Link class="nav-link">My orders</Link>

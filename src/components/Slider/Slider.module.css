@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@700&family=Merienda&display=swap");
+
+.sliderItems {
+  width: 100%;
+  min-height: 450px;
+  background-color: #5ba8ad;
+}
+@media (max-width: 576px) {
+  .sliderItems {
+    height: 100vh;
+  }
+}
+.viewBtn {
+  background: #8c45ff;
+  border: none;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 5px 20px !important;
+  border-radius: 5px;
+}
+
+.sliderTitle {
+  font-family: "Merienda", cursive;
+  padding-bottom: 10px;
+  color: #491783;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.sliderPra {
+  font-family: "Josefin Slab", serif;
+  color: #333233;
+  font-size: 18px;
+  font-weight: 500;
+}

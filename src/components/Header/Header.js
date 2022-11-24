@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo2.png";
+import { useAuth } from "../../contexts/AuthContext";
 import styles from "./Header.module.css";
 
 const Header = () => {
   const [mobileMenu, setMobileMenu] = useState(true);
+  const { currentUser, logOut } = useAuth();
 
   return (
     <nav className={`navbar navbar-expand-lg shadow-sm ${styles.mainNav}`}>
@@ -48,21 +50,27 @@ const Header = () => {
                 Blog
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className={`${styles.navLink}`} to="/login">
-                Login
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className={`${styles.navLink}`} to="/dashboard">
-                Dashboard
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className={`${styles.navLink}`} >
-                LogOut
-              </NavLink>
-            </li>
+
+            {currentUser ? (
+              <>
+                <li className="nav-item">
+                  <NavLink className={`${styles.navLink}`} to="/dashboard">
+                    Dashboard
+                  </NavLink>
+                </li>
+                <li className="nav-item" onClick={logOut}>
+                  <NavLink className={`${styles.navLink}`}>LogOut</NavLink>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <NavLink className={`${styles.navLink}`} to="/login">
+                    Login
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

@@ -10,10 +10,10 @@ const Sidebar = () => {
           <Link class="nav-link ">Add Products</Link>
         </li>
         <li class="nav-item">
-          <Link class="nav-link">Home</Link>
+          <Link class="nav-link">My orders</Link>
         </li>
         <li class="nav-item">
-          <Link class="nav-link ">Home</Link>
+          <Link class="nav-link ">All Sellers</Link>
         </li>
       </ul>
     </div>

@@ -58,6 +58,11 @@ const Header = () => {
                 Dashboard
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className={`${styles.navLink}`} >
+                LogOut
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>

@@ -44,18 +44,18 @@ const Header = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className={`${styles.navLink}`} to="/services" end>
-                services
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className={`${styles.navLink}`} to="/blog">
+              <NavLink className={`${styles.navLink}`} to="/blog" end>
                 Blog
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className={`${styles.navLink}`} to="/about">
-                About
+              <NavLink className={`${styles.navLink}`} to="/login">
+                Login
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className={`${styles.navLink}`} to="/dashboard">
+                Dashboard
               </NavLink>
             </li>
           </ul>

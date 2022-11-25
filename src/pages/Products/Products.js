@@ -1,16 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import BookModal from "./BookModal";
 
 const Products = () => {
   const [product, setProduct] = useState([]);
+  const [getProduct, setGetProduct] = useState({});
   const { id } = useParams();
   useEffect(() => {
     fetch(`http://localhost:5000/api/products/${id}`)
       .then((res) => res.json())
       .then((data) => setProduct(data.data));
   }, [id]);
-  
+
   return (
     <section>
       <div className="container">
@@ -32,13 +34,22 @@ const Products = () => {
                   <p>resale price: {items.resalePrice} Taka</p>
                   <p>years of use: {items.pyear} </p>
                   <p>Post Time:{items.createdAt}</p>
-                  <button className="btn btn-primary">Book now</button>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    onClick={() => setGetProduct(items)}
+                  >
+                    Book Now
+                  </button>
                 </div>
               </div>
             </div>
           ))}
         </div>
       </div>
+      <BookModal getProduct={getProduct} />
     </section>
   );
 };

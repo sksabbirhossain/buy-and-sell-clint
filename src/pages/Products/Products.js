@@ -10,7 +10,7 @@ const Products = () => {
       .then((res) => res.json())
       .then((data) => setProduct(data.data));
   }, [id]);
-  console.log(product);
+  
   return (
     <section>
       <div className="container">
@@ -26,7 +26,7 @@ const Products = () => {
                 />
                 <div className="card-body">
                   <h5 className="card-title">{items.productName}</h5>
-                  <p>seller's name: </p>
+                  <p>seller's name: {items.sellerName} </p>
                   <p className="card-text">{items.locaton}</p>
                   <p>original price: {items.originalPrice} Taka</p>
                   <p>resale price: {items.resalePrice} Taka</p>

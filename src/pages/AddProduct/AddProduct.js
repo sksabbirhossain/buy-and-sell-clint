@@ -3,8 +3,10 @@ import React from "react";
 import toast from "react-hot-toast";
 import Form from "../../components/Form/Form";
 import FormInput from "../../components/FormInput/FormInput";
+import { useAuth } from "../../contexts/AuthContext";
 
 const AddProduct = () => {
+  const { currentUser } = useAuth();
   const handleAddProduct = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -20,6 +22,7 @@ const AddProduct = () => {
       description: form.description.value,
       categoryId: form.categoryname.value,
       createdAt: new Date(),
+      sellerName: currentUser.displayName,
     };
 
     //store product data

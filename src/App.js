@@ -8,6 +8,7 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Category from "./pages/Products/Products";
 import Signup from "./pages/Signup/Signup";
+import PrivateRoute from "./routes/PrivateRoute";
 
 function App() {
   return (
@@ -16,9 +17,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/category/:id" element={<Category />} />
+        <Route path="/category/:id" element={<PrivateRoute><Category /></PrivateRoute>} />
       </Route>
-      <Route path="/dashboard" element={<Admin />}>
+      <Route path="/dashboard" element={<PrivateRoute><Admin /></PrivateRoute>}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dashboard/add-product" element={<AddProduct />} />
       </Route>

@@ -21,6 +21,7 @@ const Signup = () => {
 
   // form handle and signup function
   const handleUserSignup = (e) => {
+    const userRole = e.target.userrole.value;
     setLoading(true);
     e.preventDefault();
     //   validation
@@ -33,9 +34,7 @@ const Signup = () => {
     userSignup(email, password, username)
       .then((userInfo) => {
         const user = userInfo.user;
-        console.log(user);
-        toast.success("User Create Successfull");
-
+        addUser(userRole, user.uid);
         // update profile
         updateProfile(user, {
           displayName: username,
@@ -50,7 +49,7 @@ const Signup = () => {
       });
   };
 
-  //   // google signup function
+  // google signup function
   const handleGoogleSignup = () => {
     googleSignin()
       .then((result) => {
@@ -64,6 +63,26 @@ const Signup = () => {
         toast.error(errorMessage);
       });
   };
+
+  //also create user in mongodb
+  function addUser(role, userId) {
+    fetch("http://localhost:5000/api/add-user", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        email,
+        userRole: role,
+        userId: userId,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("product added successfully");
+      });
+  }
 
   return (
     <section className="mt-4 mt-md-5 ">
@@ -98,7 +117,7 @@ const Signup = () => {
                     <label htmlFor="" className="form-label">
                       User Type
                     </label>
-                    <select name="" className="form-control">
+                    <select name="userrole" className="form-control">
                       <option value="buyer">buyer</option>
                       <option value="seller">seller</option>
                     </select>

@@ -6,7 +6,7 @@ import { useAuth } from "../../contexts/AuthContext";
 
 const BookModal = ({ getProduct }) => {
   const { currentUser } = useAuth();
-  const { productName, resalePrice } = getProduct;
+  const { productName, resalePrice, photoUrl } = getProduct;
 
   const handleBooking = (e) => {
     e.preventDefault();
@@ -16,6 +16,7 @@ const BookModal = ({ getProduct }) => {
     const price = e.target.price.value;
     const number = e.target.number.value;
     const meetLocation = e.target.meetlocation.value;
+
     const fromData = {
       userName,
       userEmail,
@@ -23,9 +24,10 @@ const BookModal = ({ getProduct }) => {
       price,
       number,
       meetLocation,
+      photoUrl,
     };
 
-    fetch("http://localhost:5000/api/bookings", {
+    fetch("http://localhost:5000/api/add-booking", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

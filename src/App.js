@@ -10,6 +10,9 @@ import Category from "./pages/Products/Products";
 import Signup from "./pages/Signup/Signup";
 
 function App() {
+
+  
+
   return (
     <Routes>
       <Route path="/" element={<Main />}>

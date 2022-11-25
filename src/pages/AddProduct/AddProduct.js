@@ -22,6 +22,7 @@ const AddProduct = () => {
       createdAt: new Date(),
     };
 
+    //store product data
     fetch("http://localhost:5000/api/add-product", {
       method: "POST",
       headers: {

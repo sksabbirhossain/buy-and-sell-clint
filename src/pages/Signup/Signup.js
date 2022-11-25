@@ -28,6 +28,8 @@ const Signup = () => {
       setLoading(false);
       return setError("password not match");
     }
+
+    //user signup by email and password
     userSignup(email, password, username)
       .then((userInfo) => {
         const user = userInfo.user;

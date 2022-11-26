@@ -6,6 +6,7 @@ import AddProduct from "./pages/AddProduct/AddProduct";
 import AllBuyers from "./pages/AllBuyers/AllBuyers";
 import AllSellers from "./pages/AllSellers/AllSellers";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import Error from "./pages/Error/Error";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import MyOrders from "./pages/MyOrders/MyOrders";
@@ -34,6 +35,7 @@ function App() {
         <Route path="/dashboard/all-sellers" element={<PrivateAdmin><AllSellers /></PrivateAdmin>} />
         <Route path="/dashboard/all-buyers" element={ <PrivateAdmin><AllBuyers/></PrivateAdmin>} />
       </Route>
+      <Route path="*" element={ <Error/>} />
     </Routes>
   );
 }

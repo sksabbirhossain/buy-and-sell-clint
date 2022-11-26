@@ -12,7 +12,10 @@ import MyOrders from "./pages/MyOrders/MyOrders";
 import MyProducts from "./pages/MyProducts/MyProducts";
 import Category from "./pages/Products/Products";
 import Signup from "./pages/Signup/Signup";
+import PrivateAdmin from "./routes/PrivateAdmin";
+import PrivateBuyer from "./routes/PrivateBuyer";
 import PrivateRoute from "./routes/PrivateRoute";
+import PrivateSeller from "./routes/PrivateSeller";
 
 function App() {
   return (
@@ -25,11 +28,11 @@ function App() {
       </Route>
       <Route path="/dashboard" element={<PrivateRoute><Admin /></PrivateRoute>}>
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/dashboard/add-product" element={<AddProduct />} />
-        <Route path="/dashboard/my-products" element={ <MyProducts/>} />
-        <Route path="/dashboard/myorders" element={<MyOrders />} />
-        <Route path="/dashboard/all-sellers" element={<AllSellers />} />
-        <Route path="/dashboard/all-buyers" element={ <AllBuyers/>} />
+        <Route path="/dashboard/add-product" element={<PrivateSeller><AddProduct /></PrivateSeller>} />
+        <Route path="/dashboard/my-products" element={ <PrivateSeller><MyProducts/></PrivateSeller>} />
+        <Route path="/dashboard/myorders" element={<PrivateBuyer><MyOrders /></PrivateBuyer>} />
+        <Route path="/dashboard/all-sellers" element={<PrivateAdmin><AllSellers /></PrivateAdmin>} />
+        <Route path="/dashboard/all-buyers" element={ <PrivateAdmin><AllBuyers/></PrivateAdmin>} />
       </Route>
     </Routes>
   );

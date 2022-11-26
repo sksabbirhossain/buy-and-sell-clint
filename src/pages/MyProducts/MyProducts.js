@@ -10,6 +10,9 @@ const MyProducts = () => {
       return myOrders.data;
     },
   });
+  if (isLoading) {
+    return "loading...";
+  }
   return (
     <div>
       <h3>my prdocuts</h3>
@@ -20,6 +23,8 @@ const MyProducts = () => {
               <th scope="col">Image</th>
               <th scope="col">Title</th>
               <th scope="col">Price</th>
+              <th scope="col">Status</th>
+              <th scope="col">ads</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -35,8 +40,12 @@ const MyProducts = () => {
                 </td>
                 <td>{order.productName}</td>
                 <td>{order.price} tk.</td>
+                <td>available</td>
                 <td>
-                  <button className="btn btn-sm btn-success">Pay</button>
+                  <button className="btn btn-sm btn-success">advertise</button>
+                </td>
+                <td>
+                  <button className="btn btn-sm btn-danger">Delete</button>
                 </td>
               </tr>
             ))}

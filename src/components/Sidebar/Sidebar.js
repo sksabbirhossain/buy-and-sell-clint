@@ -1,34 +1,67 @@
-import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 import styles from "./Sidebar.module.css";
 
 const Sidebar = () => {
+  // const [loginUser, setLoginUser] = useState({});
+  const { currentUser } = useAuth();
+  // get all users
+  const { data, isLoading } = useQuery({
+    queryKey: ["allbuyers"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/api/get-users");
+      const users = await res.json();
+      return users.data;
+    },
+  });
+
+  const users = data?.find((user) => user.userId === currentUser.uid);
+
+  if (isLoading) {
+    return "loading...";
+  }
   return (
     <div className={styles.sidebar}>
       <ul className="navbar-nav mb-2 mb-lg-0">
-        <li className="nav-item">
-          <Link className="nav-link" to="/dashboard/add-product">
-            Add Products
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/dashboard/my-products">
-            My Products
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/dashboard/myorders">
-            My orders
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/dashboard/all-sellers">
-            All Sellers
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/dashboard/all-buyers">All Buyers</Link>
-        </li>
+        {users?.userRole === "seller" && (
+          <>
+            <li className="nav-item">
+              <Link className="nav-link" to="/dashboard/add-product">
+                Add Products
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/dashboard/my-products">
+                My Products
+              </Link>
+            </li>
+          </>
+        )}
+        {users?.userRole === "admin" && (
+          <>
+            <li className="nav-item">
+              <Link className="nav-link" to="/dashboard/all-sellers">
+                All Sellers
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/dashboard/all-buyers">
+                All Buyers
+              </Link>
+            </li>
+          </>
+        )}
+        {users?.userRole === "buyer" && (
+          <>
+            <li className="nav-item">
+              <Link className="nav-link" to="/dashboard/myorders">
+                My orders
+              </Link>
+            </li>
+          </>
+        )}
       </ul>
     </div>
   );

@@ -9,8 +9,9 @@ const Contact = () => {
   return (
     <section className={`mb-5 ${styles.contact}`}>
       <div className="container">
-        <h2 className="my-4 text-center">Contact Us</h2>
         <div className={styles.contactFrom}>
+
+        <h2 className="py-4 text-center">Contact Admin</h2>
           <div className="row">
             <div className="offset-md-3 col-md-6">
               <div className="p-3">

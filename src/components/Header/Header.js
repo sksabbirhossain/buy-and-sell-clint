@@ -46,7 +46,7 @@ const Header = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className={`${styles.navLink}`} to="/blog" end>
+              <NavLink className={`${styles.navLink}`} to="/blogs" end>
                 Blog
               </NavLink>
             </li>

@@ -5,6 +5,7 @@ import Main from "./layouts/Main";
 import AddProduct from "./pages/AddProduct/AddProduct";
 import AllBuyers from "./pages/AllBuyers/AllBuyers";
 import AllSellers from "./pages/AllSellers/AllSellers";
+import Blogs from "./pages/Blogs/Blogs";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Error from "./pages/Error/Error";
 import Home from "./pages/Home/Home";
@@ -23,6 +24,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Main />}>
         <Route path="/" element={<Home />} />
+        <Route path="/blogs" element={<Blogs/> } />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/category/:id" element={<PrivateRoute><Category /></PrivateRoute>} />

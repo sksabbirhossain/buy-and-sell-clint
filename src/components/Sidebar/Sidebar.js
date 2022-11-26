@@ -1,11 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import styles from "./Sidebar.module.css";
 
 const Sidebar = () => {
-  // const [loginUser, setLoginUser] = useState({});
   const { currentUser } = useAuth();
   // get all users
   const { data, isLoading } = useQuery({

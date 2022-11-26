@@ -3,11 +3,11 @@ import React from "react";
 
 const AllSellers = () => {
   const { data, isLoading } = useQuery({
-    queryKey: ["myOrders"],
+    queryKey: ["allsellers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/api/get-bookings");
-      const myOrders = await res.json();
-      return myOrders.data;
+      const res = await fetch("http://localhost:5000/api/get-allsellers");
+      const AllSellers = await res.json();
+      return AllSellers.data;
     },
   });
   return (
@@ -17,26 +17,20 @@ const AllSellers = () => {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Image</th>
-              <th scope="col">Title</th>
-              <th scope="col">Price</th>
+              <th scope="col">No</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
-            {data?.map((order) => (
-              <tr key={order._id}>
+            {data?.map((seller) => (
+              <tr key={seller._id}>
+                <td>{1}</td>
+                <td>{seller.username}</td>
+                <td>{seller.email}</td>
                 <td>
-                  <img
-                    src={order.photoUrl}
-                    alt=""
-                    style={{ width: "40px", borderRadius: "50px" }}
-                  />
-                </td>
-                <td>{order.productName}</td>
-                <td>{order.price} tk.</td>
-                <td>
-                  <button className="btn btn-sm btn-success">Pay</button>
+                  <button className="btn btn-sm btn-danger">delete</button>
                 </td>
               </tr>
             ))}

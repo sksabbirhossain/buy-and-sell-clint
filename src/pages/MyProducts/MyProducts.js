@@ -1,13 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { useAuth } from "../../contexts/AuthContext";
 
 const MyProducts = () => {
+  const {currentUser} = useAuth()
   const { data, isLoading } = useQuery({
-    queryKey: ["myOrders"],
+    queryKey: ["myProducts"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/api/get-bookings");
-      const myOrders = await res.json();
-      return myOrders.data;
+      const res = await fetch(`http://localhost:5000/api/get-my-products?email=${currentUser.email}`);
+      const myProducts = await res.json();
+      return myProducts.data;
     },
   });
   if (isLoading) {
@@ -29,17 +31,17 @@ const MyProducts = () => {
             </tr>
           </thead>
           <tbody>
-            {data?.map((order) => (
-              <tr key={order._id}>
+            {data?.map((product) => (
+              <tr key={product._id}>
                 <td>
                   <img
-                    src={order.photoUrl}
+                    src={product.photoUrl}
                     alt=""
                     style={{ width: "40px", borderRadius: "50px" }}
                   />
                 </td>
-                <td>{order.productName}</td>
-                <td>{order.price} tk.</td>
+                <td>{product.productName}</td>
+                <td>{product.resalePrice} tk.</td>
                 <td>available</td>
                 <td>
                   <button className="btn btn-sm btn-success">advertise</button>

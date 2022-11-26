@@ -1,12 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import Form from "../../components/Form/Form";
 import FormInput from "../../components/FormInput/FormInput";
 import { useAuth } from "../../contexts/AuthContext";
 
 const AddProduct = () => {
   const { currentUser } = useAuth();
+  const navigate = useNavigate();
   const handleAddProduct = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -23,6 +25,8 @@ const AddProduct = () => {
       categoryId: form.categoryname.value,
       createdAt: new Date(),
       sellerName: currentUser.displayName,
+      userEmail: currentUser.email,
+      status: "available",
     };
 
     //store product data
@@ -37,6 +41,7 @@ const AddProduct = () => {
       .then((data) => {
         toast.success("product added successfully");
         e.target.reset();
+        navigate("/dashboard/my-products");
       });
   };
 

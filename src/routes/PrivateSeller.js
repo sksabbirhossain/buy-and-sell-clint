@@ -9,7 +9,7 @@ const PrivateSeller = ({ children }) => {
   const location = useLocation();
   // get all users
   const { data, isLoading } = useQuery({
-    queryKey: ["allseller"],
+    queryKey: ["seller"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/api/get-users");
       const users = await res.json();
@@ -17,13 +17,13 @@ const PrivateSeller = ({ children }) => {
     },
   });
 
-  const seller = data?.find((user) => user.userId === currentUser.uid);
-
   if (isLoading) {
     return "loading...";
   }
-  // console.log(seller.userRole)
-  if (seller.userRole !== "seller") {
+
+  const sellers = data?.find((user) => user.userId === currentUser.uid);
+
+  if (sellers.userRole !== "seller") {
     logOut();
     toast("You Must Login form this route");
     return <Navigate to="/login" state={{ from: location }} replace />;

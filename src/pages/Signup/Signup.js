@@ -80,10 +80,12 @@ const Signup = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        toast.success("product added successfully");
+        toast.success("signup successfull");
       });
   }
-
+  if (loading) {
+  return "loading.."
+}
   return (
     <section className="mt-4 mt-md-5 ">
       <div className="container">

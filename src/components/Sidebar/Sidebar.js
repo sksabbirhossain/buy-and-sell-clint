@@ -8,7 +8,7 @@ const Sidebar = () => {
   const { currentUser } = useAuth();
   // get all users
   const { data, isLoading } = useQuery({
-    queryKey: ["allbuyers"],
+    queryKey: ["alluserdata"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/api/get-users");
       const users = await res.json();
@@ -16,11 +16,12 @@ const Sidebar = () => {
     },
   });
 
-  const users = data?.find((user) => user.userId === currentUser.uid);
-
   if (isLoading) {
     return "loading...";
   }
+
+  const users = data?.find((user) => user.userId === currentUser.uid);
+
   return (
     <div className={styles.sidebar}>
       <ul className="navbar-nav mb-2 mb-lg-0">

@@ -68,6 +68,10 @@ const Login = () => {
       });
   };
 
+  if (loading) {
+    return "loading...";
+  }
+
   return (
     <section className="mt-4 mt-md-5 ">
       <div className="container">

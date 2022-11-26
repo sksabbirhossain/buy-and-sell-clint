@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import React from "react";
+import toast from "react-hot-toast";
 
 const AllSellers = () => {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ["allsellers"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/api/get-allsellers");
@@ -10,6 +12,24 @@ const AllSellers = () => {
       return AllSellers.data;
     },
   });
+
+  if (isLoading) {
+    return "loading...";
+  }
+  //delete seller
+  const handleDeleteSeller = (id) => {
+    axios
+      .delete(`http://localhost:5000/api//delete-user/${id}`)
+      .then(() => {
+        refetch();
+        toast.success("user delete successfull");
+      })
+      .catch(function (error) {
+        console.log(error);
+        toast.error("something worng");
+      });
+  };
+
   return (
     <div>
       <h3>all sellers</h3>
@@ -30,7 +50,12 @@ const AllSellers = () => {
                 <td>{seller.username}</td>
                 <td>{seller.email}</td>
                 <td>
-                  <button className="btn btn-sm btn-danger">delete</button>
+                  <button
+                    className="btn btn-sm btn-danger"
+                    onClick={() => handleDeleteSeller(seller._id)}
+                  >
+                    delete
+                  </button>
                 </td>
               </tr>
             ))}

@@ -3,7 +3,6 @@ import {
   FaEnvelopeOpen,
   FaLocationArrow,
   FaPhone,
-  FaVoicemail,
 } from "react-icons/fa";
 import logo from "../../assets/logo.png";
 import SocialIcons from "../SocialIcons/SocialIcons";

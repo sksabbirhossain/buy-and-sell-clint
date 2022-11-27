@@ -1,16 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import BookModal from "../Products/BookModal";
 
 const AdvertisedItems = () => {
+  const [product, setProduct] = useState([]);
+  const [getProduct, setGetProduct] = useState({});
+  useEffect(() => {
+    fetch("http://localhost:5000/api/my-product/get-advertise")
+      .then((res) => res.json())
+      .then((data) => setProduct(data.data));
+  }, []);
+
+  console.log(product)
+
   return (
-    <section style={{display: "none"}}>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-4">
-            <div className="card"></div>
+    <section>
+    <div className="container">
+      <div className="row">
+        {product?.map((items) => (
+          <div className="col-md-6" key={items._id}>
+            <div className="card mb-2">
+              <img
+                src={items.photoUrl}
+                className="card-img-top"
+                alt="..."
+                style={{ maxWidth: "250px" }}
+              />
+              <div className="card-body">
+                <h5 className="card-title">{items.productName}</h5>
+                <p>seller's name: {items.sellerName} </p>
+                <p className="card-text">{items.locaton}</p>
+                <p>original price: {items.originalPrice} Taka</p>
+                <p>resale price: {items.resalePrice} Taka</p>
+                <p>years of use: {items.pyear} </p>
+                <p>Post Time:{items.createdAt}</p>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  onClick={() => setGetProduct(items)}
+                >
+                  Book Now
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
-    </section>
+    </div>
+    <BookModal getProduct={getProduct} />
+  </section>
   );
 };
 

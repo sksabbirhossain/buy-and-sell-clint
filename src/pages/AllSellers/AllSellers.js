@@ -17,9 +17,9 @@ const AllSellers = () => {
     return "loading...";
   }
   //delete seller
-  const handleDeleteSeller = (id) => {
+  const handleDeleteSeller = (id, email) => {
     axios
-      .delete(`http://localhost:5000/api//delete-user/${id}`)
+      .delete(`http://localhost:5000/api/delete-user/${id}?email=${email}`)
       .then(() => {
         refetch();
         toast.success("user delete successfull");
@@ -52,7 +52,7 @@ const AllSellers = () => {
                 <td>
                   <button
                     className="btn btn-sm btn-danger"
-                    onClick={() => handleDeleteSeller(seller._id)}
+                    onClick={() => handleDeleteSeller(seller._id, seller.email)}
                   >
                     delete
                   </button>

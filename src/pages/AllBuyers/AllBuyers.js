@@ -19,7 +19,7 @@ const AllBuyers = () => {
   //delete seller
   const handleDeleteSeller = (id) => {
     axios
-      .delete(`http://localhost:5000/api//delete-user/${id}`)
+      .delete(`http://localhost:5000/api/delete-user/${id}`)
       .then(() => {
         refetch();
         toast.success("user delete successfull");

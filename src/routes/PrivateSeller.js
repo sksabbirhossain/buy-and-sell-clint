@@ -23,7 +23,7 @@ const PrivateSeller = ({ children }) => {
 
   const sellers = data?.find((user) => user.userId === currentUser.uid);
 
-  if (sellers.userRole !== "seller") {
+  if (sellers?.userRole !== "seller") {
     logOut();
     toast("You Must Login form this route");
     return <Navigate to="/login" state={{ from: location }} replace />;

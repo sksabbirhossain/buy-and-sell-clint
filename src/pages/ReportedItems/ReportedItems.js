@@ -3,26 +3,23 @@ import axios from "axios";
 import React from "react";
 import toast from "react-hot-toast";
 import Spinner from "../../components/Spinner/Spinner";
-import { useAuth } from "../../contexts/AuthContext";
 
-const MyProducts = () => {
-  const { currentUser } = useAuth();
+const ReportedItems = () => {
   const { data, isLoading, refetch } = useQuery({
-    queryKey: ["myProducts"],
+    queryKey: ["allbuyers"],
     queryFn: async () => {
-      const res = await fetch(
-        `http://localhost:5000/api/get-my-products?email=${currentUser.email}`
-      );
-      const myProducts = await res.json();
-      return myProducts.data;
+      const res = await fetch("http://localhost:5000/api/get-report-to-admin");
+      const AllBuyers = await res.json();
+      return AllBuyers.data;
     },
   });
+  console.log(data);
   if (isLoading) {
     return <Spinner />;
   }
-
-  //delete product
-  const handleDeleteProduct = (id) => {
+    
+ //delete product
+ const handleDeleteProduct = (id) => {
     axios
       .delete(`http://localhost:5000/api/delete-product/${id}`)
       .then(() => {
@@ -34,25 +31,9 @@ const MyProducts = () => {
         toast.error("something went worng");
       });
   };
-
-  //ads product
-  const handleAdsProduct = (id) => {
-    fetch("http://localhost:5000/api/my-product/advertise", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ productId: id }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        toast.success("advertise successfull");
-      });
-  };
-
   return (
     <div>
-      <h3>my prdocuts</h3>
+      <h3>Reported Items</h3>
       <div className="card">
         <table className="table table-striped">
           <thead>
@@ -61,7 +42,6 @@ const MyProducts = () => {
               <th scope="col">Title</th>
               <th scope="col">Price</th>
               <th scope="col">Status</th>
-              <th scope="col">ads</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -77,15 +57,7 @@ const MyProducts = () => {
                 </td>
                 <td>{product.productName}</td>
                 <td>{product.resalePrice} tk.</td>
-                <td>available</td>
-                <td>
-                  <button
-                    className="btn btn-sm btn-success"
-                    onClick={() => handleAdsProduct(product._id)}
-                  >
-                    advertise
-                  </button>
-                </td>
+                    <td>{ product.status}</td>
                 <td>
                   <button
                     className="btn btn-sm btn-danger"
@@ -103,4 +75,4 @@ const MyProducts = () => {
   );
 };
 
-export default MyProducts;
+export default ReportedItems;

@@ -1,16 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import Spinner from "../../components/Spinner/Spinner";
+import { useAuth } from "../../contexts/AuthContext";
 
 const MyOrders = () => {
+  const { currentUser } = useAuth();
   const { data, isLoading } = useQuery({
     queryKey: ["myOrders"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/api/get-bookings");
+      const res = await fetch(
+        `http://localhost:5000/api/get-bookings/${currentUser.email}`
+      );
       const myOrders = await res.json();
       return myOrders.data;
     },
   });
-  if (isLoading) return "Loading...";
+
+  if (isLoading) return <Spinner/>;
   return (
     <div>
       <h3>my order</h3>

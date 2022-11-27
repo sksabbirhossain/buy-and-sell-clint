@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Form from "../../components/Form/Form";
 import FormInput from "../../components/FormInput/FormInput";
+import Spinner from "../../components/Spinner/Spinner";
 import { useAuth } from "../../contexts/AuthContext";
 import styles from "../../styles/Signup.module.css";
 
@@ -84,7 +85,7 @@ const Signup = () => {
       });
   }
   if (loading) {
-  return "loading.."
+  return <Spinner/>
 }
   return (
     <section className="mt-4 mt-md-5 ">

@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import Spinner from "../components/Spinner/Spinner";
 import { useAuth } from "../contexts/AuthContext";
 
 const PrivateAdmin = ({ children }) => {
   const { currentUser, logOut } = useAuth();
-  const location = useLocation();
   // get all users
   const { data, isLoading } = useQuery({
     queryKey: ["admin"],
@@ -18,7 +18,7 @@ const PrivateAdmin = ({ children }) => {
   });
 
   if (isLoading) {
-    return "loading...";
+    return <Spinner/>;
   }
 
   const admins = data?.find((user) => user.userId === currentUser.uid);
@@ -27,7 +27,7 @@ const PrivateAdmin = ({ children }) => {
   if (admins.userRole !== "admin") {
     logOut();
     toast("You Must Login form this route");
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to="/login"  replace />;
   }
   return children;
 };

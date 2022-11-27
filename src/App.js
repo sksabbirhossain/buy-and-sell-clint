@@ -13,6 +13,7 @@ import Login from "./pages/Login/Login";
 import MyOrders from "./pages/MyOrders/MyOrders";
 import MyProducts from "./pages/MyProducts/MyProducts";
 import Category from "./pages/Products/Products";
+import ReportedItems from "./pages/ReportedItems/ReportedItems";
 import Signup from "./pages/Signup/Signup";
 import PrivateAdmin from "./routes/PrivateAdmin";
 import PrivateBuyer from "./routes/PrivateBuyer";
@@ -36,6 +37,7 @@ function App() {
         <Route path="/dashboard/myorders" element={<PrivateBuyer><MyOrders /></PrivateBuyer>} />
         <Route path="/dashboard/all-sellers" element={<PrivateAdmin><AllSellers /></PrivateAdmin>} />
         <Route path="/dashboard/all-buyers" element={ <PrivateAdmin><AllBuyers/></PrivateAdmin>} />
+        <Route path="/dashboard/reported-items" element={ <PrivateAdmin><ReportedItems/></PrivateAdmin>} />
       </Route>
       <Route path="*" element={ <Error/>} />
     </Routes>

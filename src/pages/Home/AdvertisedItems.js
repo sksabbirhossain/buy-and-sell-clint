@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Moment from "react-moment";
 import BookModal from "../Products/BookModal";
 
 const AdvertisedItems = () => {
@@ -10,46 +11,65 @@ const AdvertisedItems = () => {
       .then((data) => setProduct(data.data));
   }, []);
 
-  console.log(product)
+  console.log(product);
 
   return (
-    <section>
-    <div className="container">
-      <div className="row">
-        {product?.map((items) => (
-          <div className="col-md-6" key={items._id}>
-            <div className="card mb-2">
-              <img
-                src={items.photoUrl}
-                className="card-img-top"
-                alt="..."
-                style={{ maxWidth: "250px" }}
-              />
-              <div className="card-body">
-                <h5 className="card-title">{items.productName}</h5>
-                <p>seller's name: {items.sellerName} </p>
-                <p className="card-text">{items.locaton}</p>
-                <p>original price: {items.originalPrice} Taka</p>
-                <p>resale price: {items.resalePrice} Taka</p>
-                <p>years of use: {items.pyear} </p>
-                <p>Post Time:{items.createdAt}</p>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
-                  onClick={() => setGetProduct(items)}
-                >
-                  Book Now
-                </button>
-              </div>
+    <>
+      {product?.length > 0 && (
+        <section>
+          <div className="container">
+            <h2 className="text-uppercase mb-3">Advertise</h2>
+            <div className="row">
+              {product?.map((items) => (
+                <div className="col-md-4" key={items._id}>
+                  <div className="card product-card shadow border-0 mb-2">
+                    <img
+                      src={items.photoUrl}
+                      className="card-img-top"
+                      alt="..."
+                      style={{ maxWidth: "250px", height: "250px" }}
+                    />
+                    <div className="card-body">
+                      <h5 className="card-title">{items.productName}</h5>
+                      <div className="d-flex justify-content-between">
+                        <span className="sallerName">
+                          Seller: {items.sellerName}
+                          <span></span>
+                        </span>
+                        <p>
+                          <Moment fromNow>{items.createdAt}</Moment>
+                        </p>
+                      </div>
+                      <div className="d-flex justify-content-between">
+                        <p className="bg-dark px-1 rounded text-light">
+                          Original price: {items.originalPrice}tk
+                        </p>
+                        <p className="bg-success px-1 rounded text-light">
+                          Resale price: {items.resalePrice}tk
+                        </p>
+                      </div>
+                      <p>Location: {items.location}</p>
+                      <p>years of use: {items.uyear} </p>
+
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-success mt-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                        onClick={() => setGetProduct(items)}
+                      >
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        ))}
-      </div>
-    </div>
-    <BookModal getProduct={getProduct} />
-  </section>
+          <BookModal getProduct={getProduct} />
+        </section>
+      )}
+    </>
   );
 };
 

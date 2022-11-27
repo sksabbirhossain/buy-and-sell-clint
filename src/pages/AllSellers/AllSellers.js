@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
 import toast from "react-hot-toast";
+import Spinner from "../../components/Spinner/Spinner";
 
 const AllSellers = () => {
   const { data, isLoading, refetch } = useQuery({
@@ -14,7 +15,7 @@ const AllSellers = () => {
   });
 
   if (isLoading) {
-    return "loading...";
+    return <Spinner/>;
   }
   //delete seller
   const handleDeleteSeller = (id, email) => {

@@ -51,6 +51,11 @@ const Sidebar = () => {
                 All Buyers
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/dashboard/reported-items">
+                Reported Items
+              </Link>
+            </li>
           </>
         )}
         {users?.userRole === "buyer" && (

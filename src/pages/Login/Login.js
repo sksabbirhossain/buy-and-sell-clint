@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Form from "../../components/Form/Form";
 import FormInput from "../../components/FormInput/FormInput";
+import Spinner from "../../components/Spinner/Spinner";
 // import Spinner from "../components/Spinner/Spinner";
 import { useAuth } from "../../contexts/AuthContext";
 import styles from "../../styles/Login.module.css";
@@ -69,7 +70,7 @@ const Login = () => {
   };
 
   if (loading) {
-    return "loading...";
+    return <Spinner/>;
   }
 
   return (

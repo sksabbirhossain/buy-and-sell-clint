@@ -1,0 +1,9 @@
+.spinner {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  background: linear-gradient(#062361de, #061868cb);
+}

@@ -5,9 +5,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
-// import slider1 from "../../images/slider/slider1.png";
-// import slider2 from "../../images/slider/slider2.png";
-// import slider3 from "../../images/slider/slider3.png";
 import styles from "./Slider.module.css";
 
 const Slider = () => {

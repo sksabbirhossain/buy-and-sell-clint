@@ -21,6 +21,7 @@ const AddProduct = () => {
       mobileNumber: form.mobilenumber.value,
       location: form.location.value,
       pyear: form.yearofpurchase.value,
+      uyear: form.yearofuse.value,
       description: form.description.value,
       categoryId: form.categoryname.value,
       createdAt: new Date(),
@@ -128,6 +129,12 @@ const AddProduct = () => {
                 type="number"
                 name="yearofpurchase"
                 placeholder="year of purchase "
+              />
+              <FormInput
+                label="years of use "
+                type="number"
+                name="yearofuse"
+                placeholder="year of use "
               />
               <div className="mb-3">
                 <label htmlFor="" className="form-label">

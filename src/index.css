@@ -36,3 +36,12 @@ button:focus,
 section {
   margin-top: 50px;
 }
+.sallerName {
+  color: #4d4a4a;
+}
+.product-card p {
+  margin-bottom: 5px;
+}
+.product-card  .card-body{
+  padding-bottom: 5px !important;
+}

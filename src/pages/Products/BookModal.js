@@ -10,6 +10,9 @@ const BookModal = ({ getProduct }) => {
 
   const handleBooking = (e) => {
     e.preventDefault();
+    if (!currentUser) {
+      return toast.error("only login user can booking")
+    }
     const userName = e.target.username.value;
     const userEmail = e.target.email.value;
     const productName = e.target.productname.value;
@@ -68,14 +71,14 @@ const BookModal = ({ getProduct }) => {
                 label="User Name"
                 type="text"
                 name="username"
-                defaultValue={currentUser.displayName}
+                defaultValue={currentUser?.displayName}
                 disabled
               />
               <FormInput
                 label="Email Address"
                 type="email"
                 name="email"
-                defaultValue={currentUser.email}
+                defaultValue={currentUser?.email}
                 disabled
               />
               <FormInput

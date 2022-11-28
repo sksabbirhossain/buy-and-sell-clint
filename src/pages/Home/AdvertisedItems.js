@@ -65,7 +65,7 @@ const AdvertisedItems = () => {
                         <span className="sallerName">
                           Seller: {items.sellerName}
                           <span>
-                            {verifiedUser.verified ? <VerifiedBtn /> : ""}
+                            {verifiedUser?.verified ? <VerifiedBtn /> : ""}
                           </span>
                         </span>
                         <p>

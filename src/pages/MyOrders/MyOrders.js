@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { Link } from "react-router-dom";
 import Spinner from "../../components/Spinner/Spinner";
 import { useAuth } from "../../contexts/AuthContext";
 
@@ -15,6 +16,8 @@ const MyOrders = () => {
       return myOrders.data;
     },
   });
+  
+  console.log(data)
 
   if (isLoading) return <Spinner/>;
   return (
@@ -43,7 +46,7 @@ const MyOrders = () => {
                 <td>{order.productName}</td>
                 <td>{order.price} tk.</td>
                 <td>
-                  <button className="btn btn-sm btn-success">Pay</button>
+                  {order.status === "pay" ? <Link to={`/dashboard/payment/${order._id}`} className="btn btn-sm btn-success">Pay</Link> : <button className="btn btn-sm btn-primary">paid</button>}
                 </td>
               </tr>
             ))}

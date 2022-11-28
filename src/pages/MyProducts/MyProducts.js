@@ -77,7 +77,7 @@ const MyProducts = () => {
                 </td>
                 <td>{product.productName}</td>
                 <td>{product.resalePrice} tk.</td>
-                <td>available</td>
+                <td>{ product.status}</td>
                 <td>
                   <button
                     className="btn btn-sm btn-success"

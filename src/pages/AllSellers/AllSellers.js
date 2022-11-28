@@ -3,6 +3,7 @@ import axios from "axios";
 import React from "react";
 import toast from "react-hot-toast";
 import Spinner from "../../components/Spinner/Spinner";
+import VerifiedBtn from "../../components/VerifiedBtn/VerifiedBtn";
 
 const AllSellers = () => {
   const { data, isLoading, refetch } = useQuery({
@@ -15,8 +16,24 @@ const AllSellers = () => {
   });
 
   if (isLoading) {
-    return <Spinner/>;
+    return <Spinner />;
   }
+
+  //verify seller
+  const handleVerifySeller = (id) => {
+    alert(id);
+    fetch(`http://localhost:5000/api/verify-seller/${id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("seller virify successfull");
+      });
+  };
+
   //delete seller
   const handleDeleteSeller = (id, email) => {
     axios
@@ -41,6 +58,7 @@ const AllSellers = () => {
               <th scope="col">No</th>
               <th scope="col">Name</th>
               <th scope="col">Email</th>
+              <th scope="col">Status</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -50,6 +68,22 @@ const AllSellers = () => {
                 <td>{1}</td>
                 <td>{seller.username}</td>
                 <td>{seller.email}</td>
+                <td>
+                  {seller.verified ? (
+                    <>
+                      <div className="d-flex ">
+                      <span className="pe-1">verified</span> <VerifiedBtn />
+                      </div>
+                    </>
+                  ) : (
+                    <button
+                      className="btn btn-sm btn-success"
+                      onClick={() => handleVerifySeller(seller._id)}
+                    >
+                      verify
+                    </button>
+                  )}
+                </td>
                 <td>
                   <button
                     className="btn btn-sm btn-danger"

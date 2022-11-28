@@ -5,6 +5,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
+import slider1 from "../../assets/dell.png";
+import slider2 from "../../assets/hp.png";
 import styles from "./Slider.module.css";
 
 const Slider = () => {
@@ -28,14 +30,16 @@ const Slider = () => {
                 <div className="col-md-6">
                   <div className="mt-4 mt-md-5 pt-md-5 mb-3 mb-md-0">
                     <h1 className={styles.sliderTitle}>
-                      Easy homemade beef burger
+                      Dell XPS 13 Plus Laptop
                     </h1>
                     <p className={styles.sliderPra}>
-                      The classic burger is an all time BBQ favourite! This
-                      super easy homemade beef burger recipe gives you delicious
-                      patties, packed with onions and herbs for extra flavour,
-                      that are perfect for topping with cheese, lettuce and
-                      tomato, and sandwiching between floury buns.
+                      Dell XPS 13 Plus 9320 come with twice as powerful as
+                      before* in the same size. It features 12th Generation
+                      Intel® Core™ i7-1280P (24MB Cache, up to 4.8 GHz, 14
+                      cores) and the latest battery technology 3 Cell, 55 Wh,
+                      integrated and 60W AC Adapter Type-C, providing long
+                      battery life in a lightweight design—all for a stunning
+                      combination of speed, performance and premium mobility.
                     </p>
                     <button className={`  ${styles.viewBtn}`}>
                       View <FaArrowRight />
@@ -43,8 +47,13 @@ const Slider = () => {
                   </div>
                 </div>
                 <div className="col-md-6">
-                  <div className="d-flex align-items-center h-100">
-                    {/* <img src={slider1} className="img-fluid" alt="" /> */}
+                  <div className="d-flex align-items-center h-100 w-75">
+                    <img
+                      src={slider1}
+                      className="img-fluid"
+                      alt=""
+                      style={{ height: "450px" }}
+                    />
                   </div>
                 </div>
               </div>
@@ -58,60 +67,27 @@ const Slider = () => {
               <div className="row">
                 <div className="col-md-6">
                   <div className="d-flex align-items-center h-100">
-                    {/* <img
+                    <img
                       src={slider2}
                       className="img-fluid mt-3 mt-md-5"
                       alt=""
-                    /> */}
+                      style={{ height: "450px" }}
+                    />
                   </div>
                 </div>
                 <div className="col-md-6">
                   <div className="mt-md-5 pt-md-5 mb-3 mb-md-0">
                     <h1 className={styles.sliderTitle}>
-                      Easy Homemade Neapolitan Pizza
+                      HP Spectre x360 11th Gen
                     </h1>
                     <p className={styles.sliderPra}>
-                      Neapolitan pizza, also known as Naples-style pizza, is a
-                      style of pizza made with tomatoes and mozzarella cheese.
-                      The tomatoes must be either San Marzano tomatoes or
-                      Pomodorino del Piennolo del Vesuvio, which grow on the
-                      volcanic plains to the south of Mount Vesuvius.
+                      HP Spectre x360 Convertible 14-ea1590TU is powered by
+                      Intel Core i7-1195G7 (12M Cache, 2.90 GHz up to 5.00 GHz)
+                      and 16 GB LPDDR4x-4266 MHz RAM.
                     </p>
                     <button className={`   ${styles.viewBtn}`}>
                       View <FaArrowRight />
                     </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <div className={`${styles.sliderItems}`}>
-            <div className="container">
-              <div className="row">
-                <div className="col-md-6">
-                  <div className=" mt-4 pt-md-5 mb-3 mb-md-0">
-                    <h1 className={styles.sliderTitle}>
-                      Easy homemade Linguine pasta
-                    </h1>
-                    <p className={styles.sliderPra}>
-                      Linguine is a type of pasta similar to fettuccine and
-                      trenette but elliptical in section rather than flat. It is
-                      about 4 millimetres in width, which is wider than
-                      spaghetti but not as wide as fettuccine. The name linguine
-                      means "little tongues" in Italian, where it is a plural of
-                      the feminine linguina.
-                    </p>
-                    <button className={`  ${styles.viewBtn}`}>
-                      View <FaArrowRight />
-                    </button>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="d-flex align-items-center h-100">
-                    {/* <img src={slider3} className="img-fluid mt-3 mt-md-5" alt="" /> */}
                   </div>
                 </div>
               </div>

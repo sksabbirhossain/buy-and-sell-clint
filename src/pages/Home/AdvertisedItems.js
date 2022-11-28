@@ -1,17 +1,45 @@
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import Moment from "react-moment";
+import VerifiedBtn from "../../components/VerifiedBtn/VerifiedBtn";
+import { useAuth } from "../../contexts/AuthContext";
 import BookModal from "../Products/BookModal";
 
 const AdvertisedItems = () => {
   const [product, setProduct] = useState([]);
   const [getProduct, setGetProduct] = useState({});
+  const [verifiedUser, setVerifiedUser] = useState({});
+  const { currentUser } = useAuth();
   useEffect(() => {
     fetch("http://localhost:5000/api/my-product/get-advertise")
       .then((res) => res.json())
       .then((data) => setProduct(data.data));
   }, []);
 
-  console.log(product);
+  //get verified users
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/get-user?id=${currentUser.uid}`)
+      .then((res) => res.json())
+      .then((data) => setVerifiedUser(data.data[0]));
+  }, [currentUser.uid]);
+
+  //handle report to admin
+  const handleReportAdmin = (id) => {
+    if (!currentUser) {
+      return toast.error("only loggedin user can report to admin");
+    }
+    fetch("http://localhost:5000/api/report-to-admin", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ productId: id }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Repoet to admin  successfull");
+      });
+  };
 
   return (
     <>
@@ -34,7 +62,9 @@ const AdvertisedItems = () => {
                       <div className="d-flex justify-content-between">
                         <span className="sallerName">
                           Seller: {items.sellerName}
-                          <span></span>
+                          <span>
+                            {verifiedUser.verified ? <VerifiedBtn /> : ""}
+                          </span>
                         </span>
                         <p>
                           <Moment fromNow>{items.createdAt}</Moment>
@@ -51,15 +81,24 @@ const AdvertisedItems = () => {
                       <p>Location: {items.location}</p>
                       <p>years of use: {items.uyear} </p>
 
-                      <button
-                        type="button"
-                        className="btn btn-sm btn-success mt-2"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"
-                        onClick={() => setGetProduct(items)}
-                      >
-                        Book Now
-                      </button>
+                      <div className="d-flex justify-content-between">
+                        <button
+                          type="button"
+                          className="btn btn-sm btn-success mt-2"
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModal"
+                          onClick={() => setGetProduct(items)}
+                        >
+                          Book Now
+                        </button>
+                        <button
+                          className="btn btn-sm btn-danger"
+                          onClick={() => handleReportAdmin(items._id)}
+                        >
+                          {" "}
+                          Report to Admin
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>

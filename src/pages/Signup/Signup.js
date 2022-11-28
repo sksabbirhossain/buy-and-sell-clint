@@ -56,6 +56,7 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        addUserGoogle(user.displayName, user.email, user.uid)
         toast.success("Google SignUp successful");
         navigate("/");
       })
@@ -64,6 +65,27 @@ const Signup = () => {
         toast.error(errorMessage);
       });
   };
+
+//save user information from google login
+  function addUserGoogle(name,email,userId) {
+    fetch("http://localhost:5000/api/add-user", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        username: name,
+        email: email,
+        userRole: "buyer",
+        verified: false,
+        userId: userId,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // toast.success("signup successfull");
+      });
+  }
 
   //also create user in mongodb
   function addUser(role, userId) {
@@ -76,6 +98,7 @@ const Signup = () => {
         username,
         email,
         userRole: role,
+        verified: false,
         userId: userId,
       }),
     })
@@ -85,8 +108,8 @@ const Signup = () => {
       });
   }
   if (loading) {
-  return <Spinner/>
-}
+    return <Spinner />;
+  }
   return (
     <section className="mt-4 mt-md-5 ">
       <div className="container">

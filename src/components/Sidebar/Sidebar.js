@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import styles from "./Sidebar.module.css";
 
@@ -25,6 +25,11 @@ const Sidebar = () => {
   return (
     <div className={styles.sidebar}>
       <ul className="navbar-nav mb-2 mb-lg-0">
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/dashboard" end>
+            dashboard
+          </NavLink>
+        </li>
         {users?.userRole === "seller" && (
           <>
             <li className="nav-item">

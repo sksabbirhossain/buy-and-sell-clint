@@ -6,12 +6,13 @@ import { useAuth } from "../../contexts/AuthContext";
 
 const BookModal = ({ getProduct }) => {
   const { currentUser } = useAuth();
-  const { productName, resalePrice, photoUrl } = getProduct;
+  const { productName, resalePrice, photoUrl, _id } = getProduct;
+  // console.log(getProduct);
 
   const handleBooking = (e) => {
     e.preventDefault();
     if (!currentUser) {
-      return toast.error("only login user can booking")
+      return toast.error("only loggedin user can booking");
     }
     const userName = e.target.username.value;
     const userEmail = e.target.email.value;
@@ -28,6 +29,8 @@ const BookModal = ({ getProduct }) => {
       number,
       meetLocation,
       photoUrl,
+      productId: _id,
+      status: "pay"
     };
 
     fetch("http://localhost:5000/api/add-booking", {

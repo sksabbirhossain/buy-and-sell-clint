@@ -38,10 +38,21 @@ section {
 }
 .sallerName {
   color: #4d4a4a;
+  display: flex;
 }
 .product-card p {
   margin-bottom: 5px;
 }
-.product-card  .card-body{
+.product-card .card-body {
   padding-bottom: 5px !important;
+}
+.VerifiedBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background: blue;
+  color: white;
 }

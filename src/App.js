@@ -12,6 +12,7 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import MyOrders from "./pages/MyOrders/MyOrders";
 import MyProducts from "./pages/MyProducts/MyProducts";
+import Payment from "./pages/Payment/Payment";
 import Category from "./pages/Products/Products";
 import ReportedItems from "./pages/ReportedItems/ReportedItems";
 import Signup from "./pages/Signup/Signup";
@@ -35,6 +36,7 @@ function App() {
         <Route path="/dashboard/add-product" element={<PrivateSeller><AddProduct /></PrivateSeller>} />
         <Route path="/dashboard/my-products" element={ <PrivateSeller><MyProducts/></PrivateSeller>} />
         <Route path="/dashboard/myorders" element={<PrivateBuyer><MyOrders /></PrivateBuyer>} />
+        <Route path="/dashboard/payment/:id" element={<PrivateBuyer><Payment /></PrivateBuyer>} />
         <Route path="/dashboard/all-sellers" element={<PrivateAdmin><AllSellers /></PrivateAdmin>} />
         <Route path="/dashboard/all-buyers" element={ <PrivateAdmin><AllBuyers/></PrivateAdmin>} />
         <Route path="/dashboard/reported-items" element={ <PrivateAdmin><ReportedItems/></PrivateAdmin>} />

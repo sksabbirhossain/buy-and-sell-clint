@@ -3,11 +3,15 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Moment from "react-moment";
 import { useParams } from "react-router-dom";
+import VerifiedBtn from "../../components/VerifiedBtn/VerifiedBtn";
+import { useAuth } from "../../contexts/AuthContext";
 import BookModal from "./BookModal";
 
 const Products = () => {
   const [product, setProduct] = useState([]);
   const [getProduct, setGetProduct] = useState({});
+  const [verifiedUser, setVerifiedUser] = useState({});
+  const { currentUser } = useAuth();
   const { id } = useParams();
 
   //get products
@@ -16,6 +20,14 @@ const Products = () => {
       .then((res) => res.json())
       .then((data) => setProduct(data.data));
   }, [id]);
+
+  //get verified users
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/get-user?id=${currentUser.uid}`)
+      .then((res) => res.json())
+      .then((data) => setVerifiedUser(data.data[0]));
+  }, [currentUser.uid]);
+
 
   //handle report to admin
   const handleReportAdmin = (id) => {
@@ -50,7 +62,7 @@ const Products = () => {
                   <div className="d-flex justify-content-between">
                     <span className="sallerName">
                       Seller: {items.sellerName}
-                      <span></span>
+                      <span>{verifiedUser.verified ?<VerifiedBtn/> : ""}</span>
                     </span>
                     <p>
                       <Moment fromNow>{items.createdAt}</Moment>

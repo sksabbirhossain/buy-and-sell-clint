@@ -11,24 +11,26 @@ const AdvertisedItems = () => {
   const [verifiedUser, setVerifiedUser] = useState({});
   const { currentUser } = useAuth();
   useEffect(() => {
-    fetch("http://localhost:5000/api/my-product/get-advertise")
+    fetch("https://buy-amd-sell-server.vercel.app/api/my-product/get-advertise")
       .then((res) => res.json())
       .then((data) => setProduct(data.data));
   }, []);
 
   //get verified users
   useEffect(() => {
-    fetch(`http://localhost:5000/api/get-user?id=${currentUser.uid}`)
+    fetch(
+      `https://buy-amd-sell-server.vercel.app/api/get-user?id=${currentUser?.uid}`
+    )
       .then((res) => res.json())
       .then((data) => setVerifiedUser(data.data[0]));
-  }, [currentUser.uid]);
+  }, [currentUser?.uid]);
 
   //handle report to admin
   const handleReportAdmin = (id) => {
     if (!currentUser) {
       return toast.error("only loggedin user can report to admin");
     }
-    fetch("http://localhost:5000/api/report-to-admin", {
+    fetch("https://buy-amd-sell-server.vercel.app/api/report-to-admin", {
       method: "POST",
       headers: {
         "content-type": "application/json",

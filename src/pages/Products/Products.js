@@ -16,22 +16,23 @@ const Products = () => {
 
   //get products
   useEffect(() => {
-    fetch(`http://localhost:5000/api/products/${id}`)
+    fetch(`https://buy-amd-sell-server.vercel.app/api/products/${id}`)
       .then((res) => res.json())
       .then((data) => setProduct(data.data));
   }, [id]);
 
   //get verified users
   useEffect(() => {
-    fetch(`http://localhost:5000/api/get-user?id=${currentUser.uid}`)
+    fetch(
+      `https://buy-amd-sell-server.vercel.app/api/get-user?id=${currentUser.uid}`
+    )
       .then((res) => res.json())
       .then((data) => setVerifiedUser(data.data[0]));
   }, [currentUser.uid]);
 
-
   //handle report to admin
   const handleReportAdmin = (id) => {
-    fetch("http://localhost:5000/api/report-to-admin", {
+    fetch("https://buy-amd-sell-server.vercel.app/api/report-to-admin", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -62,7 +63,9 @@ const Products = () => {
                   <div className="d-flex justify-content-between">
                     <span className="sallerName">
                       Seller: {items.sellerName}
-                      <span>{verifiedUser.verified ?<VerifiedBtn/> : ""}</span>
+                      <span>
+                        {verifiedUser.verified ? <VerifiedBtn /> : ""}
+                      </span>
                     </span>
                     <p>
                       <Moment fromNow>{items.createdAt}</Moment>

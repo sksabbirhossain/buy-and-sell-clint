@@ -10,7 +10,7 @@ const MyOrders = () => {
     queryKey: ["myOrders"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/api/get-bookings/${currentUser.email}`
+        `https://buy-amd-sell-server.vercel.app/api/get-bookings/${currentUser.email}`
       );
       const myOrders = await res.json();
       return myOrders.data;

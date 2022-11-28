@@ -7,12 +7,14 @@ const Categories = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["category"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/api/allcategories");
+      const res = await fetch(
+        "https://buy-amd-sell-server.vercel.app/api/allcategories"
+      );
       const categories = await res.json();
       return categories.data;
     },
   });
-  if (isLoading) return <Spinner/>;
+  if (isLoading) return <Spinner />;
 
   return (
     <section>
@@ -22,7 +24,10 @@ const Categories = () => {
           {data?.map((category) => (
             <div className="col-md-4 " key={category._id}>
               <Link to={`/category/${category._id}`}>
-                <div className="card mb-4" style={{ minWidth: "18rem", height: "120px" }}>
+                <div
+                  className="card mb-4"
+                  style={{ minWidth: "18rem", height: "120px" }}
+                >
                   <div className="d-flex align-items-center p-2">
                     <img
                       src={category.photoUrl}

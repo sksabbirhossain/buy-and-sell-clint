@@ -16,7 +16,7 @@ const CheckoutForm = ({ order }) => {
       orderId: order[0]._id,
     };
 
-    fetch("http://localhost:5000/api/add-payment", {
+    fetch("https://buy-amd-sell-server.vercel.app/api/add-payment", {
       method: "POST",
       headers: {
         "content-type": "application/json",

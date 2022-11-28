@@ -8,7 +8,7 @@ const AllBuyers = () => {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["allbuyers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/api/get-allbuyers");
+      const res = await fetch("https://buy-amd-sell-server.vercel.app/api/get-allbuyers");
       const AllBuyers = await res.json();
       return AllBuyers.data;
     },
@@ -20,7 +20,7 @@ const AllBuyers = () => {
   //delete seller
   const handleDeleteSeller = (id) => {
     axios
-      .delete(`http://localhost:5000/api/delete-user/${id}`)
+      .delete(`https://buy-amd-sell-server.vercel.app/api/delete-user/${id}`)
       .then(() => {
         refetch();
         toast.success("user delete successfull");

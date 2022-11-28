@@ -68,7 +68,7 @@ const Signup = () => {
 
 //save user information from google login
   function addUserGoogle(name,email,userId) {
-    fetch("http://localhost:5000/api/add-user", {
+    fetch("https://buy-amd-sell-server.vercel.app/api/add-user", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -89,7 +89,7 @@ const Signup = () => {
 
   //also create user in mongodb
   function addUser(role, userId) {
-    fetch("http://localhost:5000/api/add-user", {
+    fetch("https://buy-amd-sell-server.vercel.app/api/add-user", {
       method: "POST",
       headers: {
         "content-type": "application/json",

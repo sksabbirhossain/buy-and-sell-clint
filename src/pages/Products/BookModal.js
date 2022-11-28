@@ -30,10 +30,10 @@ const BookModal = ({ getProduct }) => {
       meetLocation,
       photoUrl,
       productId: _id,
-      status: "pay"
+      status: "pay",
     };
 
-    fetch("http://localhost:5000/api/add-booking", {
+    fetch("https://buy-amd-sell-server.vercel.app/api/add-booking", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

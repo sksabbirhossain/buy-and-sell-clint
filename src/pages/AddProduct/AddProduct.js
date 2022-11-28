@@ -31,7 +31,7 @@ const AddProduct = () => {
     };
 
     //store product data
-    fetch("http://localhost:5000/api/add-product", {
+    fetch("https://buy-amd-sell-server.vercel.app/api/add-product", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -50,7 +50,7 @@ const AddProduct = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["category"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/api/allcategories");
+      const res = await fetch("https://buy-amd-sell-server.vercel.app/api/allcategories");
       const categories = await res.json();
       return categories.data;
     },

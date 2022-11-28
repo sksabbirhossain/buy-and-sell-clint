@@ -12,7 +12,7 @@ const Payment = () => {
   const [order, setOrder] = useState([]);
   const { id } = useParams();
   useEffect(() => {
-    fetch(`http://localhost:5000/api/get-booking/${id}`)
+    fetch(`https://buy-amd-sell-server.vercel.app/api/get-booking/${id}`)
       .then((res) => res.json())
       .then((data) => setOrder(data.data));
   }, [id]);

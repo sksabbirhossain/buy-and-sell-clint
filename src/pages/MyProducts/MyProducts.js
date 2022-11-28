@@ -11,7 +11,7 @@ const MyProducts = () => {
     queryKey: ["myProducts"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/api/get-my-products?email=${currentUser.email}`
+        `https://buy-amd-sell-server.vercel.app/api/get-my-products?email=${currentUser.email}`
       );
       const myProducts = await res.json();
       return myProducts.data;
@@ -24,7 +24,7 @@ const MyProducts = () => {
   //delete product
   const handleDeleteProduct = (id) => {
     axios
-      .delete(`http://localhost:5000/api/delete-product/${id}`)
+      .delete(`https://buy-amd-sell-server.vercel.app/api/delete-product/${id}`)
       .then(() => {
         refetch();
         toast.success("product delete successfull");
@@ -37,7 +37,7 @@ const MyProducts = () => {
 
   //ads product
   const handleAdsProduct = (id) => {
-    fetch("http://localhost:5000/api/my-product/advertise", {
+    fetch("https://buy-amd-sell-server.vercel.app/api/my-product/advertise", {
       method: "POST",
       headers: {
         "content-type": "application/json",

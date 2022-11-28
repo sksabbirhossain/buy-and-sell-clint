@@ -11,7 +11,7 @@ const PrivateSeller = ({ children }) => {
   const { data, isLoading } = useQuery({
     queryKey: ["seller"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/api/get-users");
+      const res = await fetch("https://buy-amd-sell-server.vercel.app/api/get-users");
       const users = await res.json();
       return users.data;
     },
